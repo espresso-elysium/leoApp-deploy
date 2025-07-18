@@ -14,7 +14,8 @@ const App = () => {
   const [Gname, setGname] = useState("");
 
   useEffect(() => {
-    fetch("/api/userinfo", { credentials: "include" })
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    fetch(`${apiUrl}/api/userinfo`, { credentials: "include" })
       .then(res => res.json())
       .then(data => {
         setUsername(data.username);
