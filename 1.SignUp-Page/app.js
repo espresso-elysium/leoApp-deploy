@@ -39,9 +39,7 @@ app.use(session({
 
 
 app.get("/", (req, res) => {
-  const error = req.session.error;
-  req.session.error = null; // Clear error after reading
-  res.render("signUp", { error });
+  res.render("signUp"); // EJS signup page
 });
 
 // app.post("/", async (req, res) => {
@@ -78,7 +76,7 @@ app.post(
         //ap is user ko token bhejna hai jwt ki help se 
         let token = jwt.sign({ email: email, userid: user._id, username: user.username, Gname: user.Gname }, process.env.JWT_SECRET)
         res.cookie("token", token)
-        res.redirect("http://localhost:5173")
+        res.redirect("https://leoapp-deploy-frontend.onrender.com/");
       })
 
     })
@@ -114,7 +112,7 @@ app.post(
 
         let token = jwt.sign({ email: email, userid: user._id, username: user.username, Gname: user.Gname }, process.env.JWT_SECRET)    //jo user bna hai naya uska email or user id save kra hai ,"shhh" is secret key for token
         res.cookie("token", token)
-        res.status(200).redirect("http://localhost:5173")
+        res.status(200).redirect("https://leoapp-deploy-frontend.onrender.com/")
       } //agr pass shi hai toh "you can login nhi toh redirect"
 
       else res.redirect("/login")
